@@ -11,10 +11,10 @@ An HTML5 Audio Player Skin For Twitter Bootstrap 3
 ### Live demo and how to use
 
 Open the included [`index.html`](index.html) file: 
--  with your browser to:  
+-  with **your browser** to:  
     -  see a live demo 
     -  compare it with the [screenshots](#screenshots) below
-- with your text editor to:
+- with your [text editor](index.html) to:
     -  see all the css and js files you need to link to
     -  see the `<audio>`  tags in use
 
