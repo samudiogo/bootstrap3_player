@@ -14,31 +14,17 @@ An HTML5 Audio Player Skin For Twitter Bootstrap 3
  -  All the functionality of William Randol's player is preserved   
  (subject to QUnit test suite in progress :waxing_crescent_moon:)
 
-### Main differences
+For some info on the differences between `bootstrap-player` and `bootstrap3_player`, [see here.](CHANGES.md)
 
-#### Reduced dependencies
+### Live demo and how to use
 
-- `html5slider.js` no longer required since Firefox 23 (it's now at 34 at this time of writing)
-- Font Awesome no longer required thanks to [Glyphicons](http://glyphicons.com/) for the Halflings glyphs font that comes free of cost with Bootstrap 3
-
-#### <a name="cdiff"></a>CSS differences
-
-- Reduced custom css: greater reliance on Bootstrap 3 component styling  
-- Bootstrap 3 classes replace many Bootstrap 2 classes. Notably:  
-        -   `span*` => `col-xs-*`   
-        xs elements stay horizontal when player button rows narrow whereas the other device width classes stack  
-        -   `.disabled`  => opaque property on `input[type="range"]`.  
-        (`.disabled` disables the sliders as well as styling them opaquely)  
-        -   `.icon-spin` => `glyphicon glyphicon-refresh spin`  
--  `.spin` introduced to apply rotation keyframes to `glyphicon-refresh`
-
-#### Javascript differences
-
--  Changes only made to incorporate [CSS Differences](#cdiff)
-
-### Live demo
-
-As development server is available :waxing_crescent_moon:
+Open the included `index.html` file: 
+-  with your browser to:  
+    -  see a live demo 
+    -  compare it with the screenshots below
+- with your text editor to:
+    -  see all the css and js files you need to link to
+    -  see the `<audio>`  tags in use
 
 ### Screenshots
 
