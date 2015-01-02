@@ -18,7 +18,7 @@ For some info on the differences between `bootstrap-player` and `bootstrap3_play
 
 ### Live demo and how to use
 
-Open the included `index.html` file: 
+Open the included [`index.html`](index.html) file: 
 -  with your browser to:  
     -  see a live demo 
     -  compare it with the screenshots below
