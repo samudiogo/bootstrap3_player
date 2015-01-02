@@ -8,6 +8,16 @@ An HTML5 Audio Player Skin For Twitter Bootstrap 3
   * Twitter Bootstrap 3 - http://twitter.github.com/bootstrap/
   * jQuery - http://jquery.com/
 
+### Live demo and how to use
+
+Open the included `index.html` file: 
+-  with your browser to:  
+    -  see a live demo 
+    -  compare it with the [screenshots](#screenshots) below
+- with your text editor to:
+    -  see all the css and js files you need to link to
+    -  see the `<audio>`  tags in use
+
 ### Forked from William Randol's [bootstrap-player](https://github.com/WilliamRandol/bootstrap-player)
 
  -  `bootstrap-player` is great for Bootstrap 2
@@ -16,23 +26,13 @@ An HTML5 Audio Player Skin For Twitter Bootstrap 3
 
 For some info on the differences between `bootstrap-player` and `bootstrap3_player`, [see here.](CHANGES.md)
 
-### Live demo and how to use
+### <a name="screenshots">Screenshots
 
-Open the included `index.html` file: 
--  with your browser to:  
-    -  see a live demo 
-    -  compare it with the screenshots below
-- with your text editor to:
-    -  see all the css and js files you need to link to
-    -  see the `<audio>`  tags in use
+-  Audio with no additional data ![]((screenshots/Player_demo_data_no.png?raw=true)
 
-### Screenshots
+-  Audio with data - collapsed ![](screenshots/bPlayer_demo_data_0.png?raw=true)
 
--  Audio with no additional data ![](bPlayer_demo_data_no.png?raw=true)
-
--  Audio with data - collapsed ![](bPlayer_demo_data_0.png?raw=true)
-
--  Audio with data - expanded ![](bPlayer_demo_data_1.png?raw=true)
+-  Audio with data - expanded ![](screenshots/bPlayer_demo_data_1.png?raw=true)
 
 
 
