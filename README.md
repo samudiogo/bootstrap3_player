@@ -29,7 +29,7 @@ For some info on the differences between `bootstrap-player` and `bootstrap3_play
 
 ### <a name="screenshots">Screenshots
 
--  Audio with no additional data ![]((screenshots/Player_demo_data_no.png?raw=true)
+-  Audio with no additional data ![](screenshots/Player_demo_data_no.png?raw=true)
 
 -  Audio with data - collapsed ![](screenshots/bPlayer_demo_data_0.png?raw=true)
 
