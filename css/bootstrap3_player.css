@@ -1,0 +1,68 @@
+.playa input[type="range"] {
+  background-color: #ddd;
+  border: 1px solid #bbb;
+  border-radius: 0.5em;
+  opacity: 0.5;
+  height: 1em;
+  top: 2px;
+  position: relative;
+}
+
+.playa  .thumbnail  {
+    width:100%;
+}
+
+.playa .col-xs-12 {
+    padding-right: 0;
+}
+
+.playa .btn-group .btn {
+    display:inline-block;
+    float:none;
+    height: 2.2em;
+}
+
+/* TODO: Now (Bootstrap 3)  playa can be the descendent of all xs sm md lg combinations*/
+/* 
+.col-xs-4.playa, .col-xs-3 .playa, .col-xs-2 .playa, .col-xs-1 .playa, .playa.col-xs-4, .playa.col-xs-3, .playa.col-xs-2, .playa.col-xs-1{
+    padding:0;
+    overflow:hidden;
+}
+ */
+/* Acknowledgements:
+To Glyphicons (http://glyphicons.com/) for the Halflings glyphs font */
+
+/* .spin is used to rotate glyphicon glyphicon-refresh */
+.spin {
+  -webkit-animation: spin 2s infinite linear;
+  -moz-animation: spin 2s infinite linear;
+  -o-animation: spin 2s infinite linear;
+  animation: spin 2s infinite linear;
+}
+
+@-moz-keyframes spin {
+  from {
+    -moz-transform: rotate(0deg);
+  }
+  to {
+    -moz-transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
