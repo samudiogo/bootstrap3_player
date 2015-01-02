@@ -22,7 +22,8 @@ Open the included [`index.html`](index.html) file:
 
  -  `bootstrap-player` is great for Bootstrap 2
  -  All the functionality of William Randol's player is preserved   
- (subject to QUnit test suite in progress :waxing_crescent_moon:)
+ (QUnit test suite in progress :waxing_crescent_moon:)
+ -  `bootstrap3_player` updates the styling of `bootstrap-player`; has fewer dependencies; uses Bootstrap 3
 
 For some info on the differences between `bootstrap-player` and `bootstrap3_player`, [see here.](CHANGES.md)
 
