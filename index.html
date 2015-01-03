@@ -4,12 +4,11 @@
     <title>bootstrap3_player demo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- | | | | | | | | | | | | |  Required CSS files | | | | | | | | | | | | | | | | | | | | | | | |  -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~ Required CSS files ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">    
-    <link href="https://rawgit.com/iainhouston/bootstrap3_player/master/css/bootstrap3_player.css" rel="stylesheet">
+    <link href="css/bootstrap3_player.css" rel="stylesheet">
     <!-- ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^  -->
 
-    <!-- You may prefer to use your local repo copy of bootstrap3_player.css -->
   </head>
   <body>
 
@@ -27,7 +26,7 @@
 
 
 
-        <!-- | | | | | | | | | | | | | |  Audio with data | | | | | | | | | | | | | | | | | | | | | | | |  -->
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Audio with data ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
         <audio controls
           data-info-album-art="http://farm5.staticflickr.com/4050/4353986539_ec89b52698_d.jpg"
           data-info-album-title="8874"
@@ -45,7 +44,7 @@
         <!-- ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^  -->
 
 
-        <!-- | | | | | | | | | | | | | |  Audio with no additional data | | | | | | | | | | | | | | | |  -->
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Audio with no additional data ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
         <audio controls>
           <source src="http://www.w3schools.com/html/horse.ogg" type="audio/ogg" />
           <source src="http://www.w3schools.com/html/horse.mp3" type="audio/mpeg" />
@@ -68,13 +67,15 @@
       </footer>
       
 
-      <!-- | | | | | | | | | | | | |  Required Javascript files | | | | | | | | | | | | | | | | | | | | | | | |  -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+      <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~ Required Javascript files ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script> 
-      <script src="https://rawgit.com/iainhouston/bootstrap3_player/master/js/bootstrap3_player.js"></script>
+      <script src="js/bootstrap3_player.js"></script>
       <!-- ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^  -->
 
-      <!-- You may prefer to use your local repo copy of bootstrap3_player.js -->
+      <!-- Notes: -->
+      <!-- On production web server you may prefer to omit the `https:` protocol scheme -->
+      <!-- You may prefer to use your local repo copy of bootstrap3_player.js           -->
     </div><!-- container -->
   </body>
 </html>

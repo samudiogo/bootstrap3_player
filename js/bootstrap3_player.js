@@ -42,6 +42,7 @@
         var addPlay = function () {
             var play = document.createElement('button');
             $(play).addClass('btn  btn-default disabled col-xs-1');
+
             play.setPlayState = function (toggle) {
                 $(play).removeClass('disabled');
                 if (toggle === 'play') {
@@ -56,7 +57,9 @@
                         song.pause();
                     });
                 }
-            };
+            }; // setPlayState
+
+            // media events from the audio element will trigger rebuilding the play button
             $(song).on('play', function () {play.setPlayState('pause'); });
             $(song).on('canplay', function () {play.setPlayState('play'); });
             $(song).on('pause', function () {play.setPlayState('play'); });
@@ -77,7 +80,7 @@
                 timeout++;
             }, 50);
             $(player).append(play);
-        };
+        }; // addPlay
 
         var addSeek = function () {
             var seek = document.createElement('input');
@@ -151,7 +154,11 @@
             var seek_wrapper = document.createElement('div');
             $(seek_wrapper).addClass('btn btn-default col-xs-4');
             $(seek_wrapper).append(seek);
+
+            // bind seek / position slider events
             $(seek).on('change', seek.slide);
+
+            // bind audio element events to trigger seek slider updates
             $(song).on('timeupdate', seek.init);
             $(song).on('loadedmetadata', seek.init);
             $(song).on('loadeddata', seek.init);
@@ -162,6 +169,7 @@
             if (song.readyState > 0) {
                 seek.init();
             }
+
             $(player).append(seek_wrapper);
         }; // addSeek
 
@@ -169,9 +177,10 @@
             var time = document.createElement('a');
             $(time).addClass('btn btn-default col-xs-3 text-muted');
             $(time).tooltip({'container': 'body', 'placement': 'right', 'html': true});
+
             time.twodigit = function (myNum) {
                 return ('0' + myNum).slice(-2);
-            };
+            }; // time.twodigit
 
             time.timesplit = function (a) {
                 if (isNaN(a)) {
@@ -185,7 +194,7 @@
                     timeStr = hours + ':' + timeStr;
                 }
                 return timeStr;
-            };
+            }; // time.timesplit
 
             time.showtime = function () {
                 $(time).html(time.timesplit(song.duration));
@@ -203,7 +212,7 @@
                 time.showtime();
                 $(time).tooltip('fixTitle');
                 $(time).tooltip('show');
-            });
+            }); // time.click
 
             $(time).tooltip('show');
             $(song).on('loadedmetadata', time.showtime);
@@ -257,13 +266,16 @@
                 'step': 1 / 100,
                 'value': 1
             });
+
             volume.slide = function () {
                 song.muted = false;
                 song.volume = $(volume).val();
             };
+
             volume.set = function () {
                 $(volume).val(song.volume);
             };
+
             var vol_wrapper = document.createElement('div');
             $(vol_wrapper).addClass('btn  btn-default  row col-xs-3');
             $(vol_wrapper).append(volume);
@@ -277,7 +289,7 @@
             $(albumArt).addClass('thumbnail');
             $(albumArt).attr('src', $(song).data('infoAlbumArt'));
             $(data_sec).append(albumArt);
-        };
+        }; // addAlbumArt
 
         var addInfo = function (title, dataId) {
             var row = document.createElement('tr');
@@ -317,7 +329,8 @@
                 $(player_box).append(toggle_holder);
                 $(player_box).append(data_sec);
             }
-        };
+        }; // addData
+
         var addPlayer = function () {
             if ($(song).data('play') !== 'off') {
                 addPlay();
@@ -335,14 +348,14 @@
                 addVolume();
             }
             $(player_box).append(player);
-        };
+        }; // addPlayer
+
         var addAttribution = function () {
             var attribution = document.createElement('div');
             $(attribution).addClass('row col-xs-8 col-xs-offset-3');
             if (typeof ($(song).data('infoAttLink')) !== 'undefined') {
                 var attribution_link = document.createElement('a');
                 $(attribution_link).addClass('text-muted btn btn-link btn-xs');
-                    // $(attribution_link).attr('padding-top','2px');
                 $(attribution_link).attr('href', $(song).data('infoAttLink'));
                 $(attribution_link).html($(song).data('infoAtt'));
                 $(attribution).append(attribution_link);
@@ -350,14 +363,16 @@
                 $(attribution).html($(song).data('infoAtt'));
             }
             $(player_box).append(attribution);
-        };
+        }; // addAttribution
+
         var fillPlayerBox = function () {
             addData();
             addPlayer();
             if (typeof ($(song).data('infoAtt')) !== 'undefined') {
                 addAttribution();
             }
-        };
+        }; // fillPlayerBox
+
         fillPlayerBox();
         $(song).on('error', function () {
             load_error();
