@@ -39,21 +39,19 @@ QUnit.test( 'mute button sets volume slider to zero and remembers previous volum
     var seek_slider = $('.playa > section > div > input');
     var mute_button = $('button.btn:nth-child(4)');
     var volume_slider = $('div.btn:nth-child(5) > input:nth-child(1)');
-    var done_1 = assert.async();
-    var done_2 = assert.async();
-    var done_3 = assert.async();
-    var done_4 = assert.async();
     volume_slider.val('0.25');
     volume_slider.trigger('change');
 
     // wait for the volume slider's round-trip side-effect
     // mute button is notified by an audio volumechange 
+    var done_1 = assert.async();
     setTimeout(function() {
         play_button.trigger('click');
         done_1();
     }, 500); // wait this long before calling the function above    
     // wait for the play button's riund-trip side-effect
     // seek slider is notified by audio.currentTime
+    var done_2 = assert.async();
     setTimeout(function() {
         // stop play
         play_button.trigger('click');
@@ -61,11 +59,13 @@ QUnit.test( 'mute button sets volume slider to zero and remembers previous volum
         mute_button.trigger('click'); // mute
         done_2();
     }, 1000); // wait this long before calling the function above    
+    var done_3 = assert.async();
     setTimeout(function() {
         assert.equal( volume_slider.val(), '0' );
         mute_button.trigger('click'); // unmute
         done_3();
     }, 1500); // wait this long before calling the function above    
+    var done_4 = assert.async();
     setTimeout(function() {
         // volume should have been restored
         assert.equal( volume_slider.val(),  '0.25' );
