@@ -47,12 +47,12 @@ QUnit.test( 'mute button sets volume slider to zero and remembers previous volum
     volume_slider.val('0.25');
     volume_slider.trigger('change');
 
-    // wait for the volume slider's riund-trip side-effect
+    // wait for the volume slider's round-trip side-effect
     // mute button is notified by an audio volumechange 
     setTimeout(function() {
         play_button.trigger('click');
         done_1();
-    }, 200); // wait this long before calling the function above    
+    }, 500); // wait this long before calling the function above    
     // wait for the play button's riund-trip side-effect
     // seek slider is notified by audio.currentTime
     setTimeout(function() {
@@ -61,18 +61,17 @@ QUnit.test( 'mute button sets volume slider to zero and remembers previous volum
         assert.ok(seek_slider.val() > '0');
         mute_button.trigger('click'); // mute
         done_2();
-    }, 500); // wait this long before calling the function above    
+    }, 1000); // wait this long before calling the function above    
     setTimeout(function() {
         assert.equal( volume_slider.val(), '0' );
         mute_button.trigger('click'); // unmute
         done_3();
-    }, 700); // wait this long before calling the function above    
+    }, 1500); // wait this long before calling the function above    
     setTimeout(function() {
-        console.log(song.oldvolume)
         // volume should have been restored
         assert.equal( volume_slider.val(),  '0.25' );
         done_4();
-    }, 1000); // wait this long before calling the function above    
+    }, 2000); // wait this long before calling the function above    
 });
 // var player = $('.playa');
 // console.log(player);
