@@ -1,7 +1,10 @@
-/* global $, QUnit, console */
+/* global $, QUnit */
 'use strict';
+
 // Note:
-// unusually the bound events within the QUnit fixture do not show in Firefox inspector
+// strangely the bound events do not show in the Firefox inspector (34.05) when 
+// the player is enclosed within the QUnit fixture 
+
 QUnit.test( 'audio controls have been replaced by player skin', function ( assert ) {
     assert.expect( 3 );
 
@@ -15,7 +18,7 @@ QUnit.test( 'audio controls have been replaced by player skin', function ( asser
     assert.ok( player !== undefined );
 });
 
-QUnit.test( 'audio element has no native controls', function ( assert ) {
+QUnit.test( 'remaining audio element has no native controls', function ( assert ) {
     var audio = $('audio');
     var aprop = $(audio).prop('controls');
     assert.ok( !aprop );
@@ -32,14 +35,23 @@ QUnit.test( 'seek slider initially to zero', function( assert ) {
     assert.equal(seek_slider.attr('value'), 0);
 });
 
+// This one is not suitable for automated testing as the latency of the browser is so unpredictable.
+// Not entirely satisfactory. Have to run the test suite more than once to achieve sufficent response.
+// But we want to do a test that shows that the UI controls are working rather than wait on
+// DOM events directly 
+QUnit.test( 
+    'play sequence: mute button sets volume slider to zero and toggle remembers previous volume' , 
+    function ( assert ) {
 
-QUnit.test( 'mute button sets volume slider to zero and remembers previous volume' , function ( assert ) {
-    var song = $('audio');
     var play_button = $('.playa > section > button:first-child');
     var seek_slider = $('.playa > section > div > input');
     var mute_button = $('button.btn:nth-child(4)');
     var volume_slider = $('div.btn:nth-child(5) > input:nth-child(1)');
-    volume_slider.val('0.25');
+    var delay = 4000; // milliseconds
+    var test_level = '0.13';
+
+    // quiet: we're testing
+    volume_slider.val(test_level);
     volume_slider.trigger('change');
 
     // wait for the volume slider's round-trip side-effect
@@ -47,28 +59,34 @@ QUnit.test( 'mute button sets volume slider to zero and remembers previous volum
     var done_1 = assert.async();
     setTimeout(function() {
         play_button.trigger('click');
+
+        // wait for the play button's riund-trip side-effect
+        // seek slider is notified by audio.currentTime
+        var done_2 = assert.async();
+        setTimeout(function() {
+            play_button.trigger('click'); // stop play
+            assert.ok(seek_slider.val() > 0, 'volume slider remains approximately in poistion after pause');
+            mute_button.trigger('click'); // mute
+
+            var done_3 = assert.async();
+            setTimeout(function() {
+                assert.equal( volume_slider.val(), '0', 'mute button sets volume slider to zero' );
+                mute_button.trigger('click'); // unmute
+
+                var done_4 = assert.async();
+                setTimeout(function() {
+                    // volume should have been restored
+                    assert.equal( volume_slider.val(), test_level );
+                    done_4();
+
+                }, delay); // wait this long before calling the function above   
+                done_3();
+
+            }, delay); // wait for slider to adjust 
+            done_2();
+            
+        }, delay); // wait for the audio to play for a mo 
         done_1();
-    }, 500); // wait this long before calling the function above    
-    // wait for the play button's riund-trip side-effect
-    // seek slider is notified by audio.currentTime
-    var done_2 = assert.async();
-    setTimeout(function() {
-        // stop play
-        play_button.trigger('click');
-        assert.ok(seek_slider.val() > '0');
-        mute_button.trigger('click'); // mute
-        done_2();
-    }, 1000); // wait this long before calling the function above    
-    var done_3 = assert.async();
-    setTimeout(function() {
-        assert.equal( volume_slider.val(), '0' );
-        mute_button.trigger('click'); // unmute
-        done_3();
-    }, 1500); // wait this long before calling the function above    
-    var done_4 = assert.async();
-    setTimeout(function() {
-        // volume should have been restored
-        assert.equal( volume_slider.val(),  '0.25' );
-        done_4();
-    }, 2000); // wait this long before calling the function above    
+
+    }, delay); // wait this long before pressing the play button 
 });

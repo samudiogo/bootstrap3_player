@@ -1,4 +1,4 @@
-/*jslint nomen: true, debug: true, evil: false, vars: true, indent: 4 */
+/* global jQuery */
 (function ($) {'use strict';
     $('audio[controls]').before(function () {
 
@@ -37,7 +37,7 @@
             $(player_box).find('.glyphicon-refresh').parent().attr('title', 'There was an error loading the audio.');
             $(player_box).find('.glyphicon-refresh').parent().tooltip('fixTitle');
             $(player_box).find('.glyphicon-refresh').removeClass('glyphicon glyphicon-refresh spin');
-        };
+        }; // load_error
 
         var addPlay = function () {
             var play = document.createElement('button');
@@ -97,7 +97,10 @@
                 bg += ', rgba(223, 240, 216, 1) ' + ((song.currentTime / song.duration) * 100) + '%';
                 bg += ', rgba(223, 240, 216, 0) ' + ((song.currentTime / song.duration) * 100) + '%';
                 for (i = 0; i < song.buffered.length; i++) {
-                    if (song.buffered.end(i) > song.currentTime && isNaN(song.buffered.end(i)) === false && isNaN(song.buffered.start(i)) === false) {
+                    if (song.buffered.end(i) > song.currentTime && 
+                        isNaN(song.buffered.end(i)) === false && 
+                        isNaN(song.buffered.start(i)) === false) {
+                        
                         if (song.buffered.end(i) < song.duration) {
                             bufferedend = ((song.buffered.end(i) / song.duration) * 100);
                         } else {
@@ -285,7 +288,7 @@
             $(volume).on('change', volume.slide);
             $(song).on('volumechange', volume.set);
             $(player).append(vol_wrapper);
-            
+
         }; // addVolume
 
         var addAlbumArt = function () {
@@ -383,4 +386,4 @@
         });
         return player_box;
     });
-})(jQuery)
+})(jQuery);
