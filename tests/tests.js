@@ -1,8 +1,7 @@
 /* global $, QUnit, console */
 'use strict';
-// TODO: 
-// These are not actually atomic tests as the QUnit fixture seems not to rebind 
-// the events within the fixture
+// Note:
+// unusually the bound events within the QUnit fixture do not show in Firefox inspector
 QUnit.test( 'audio controls have been replaced by player skin', function ( assert ) {
     assert.expect( 3 );
 
@@ -73,5 +72,3 @@ QUnit.test( 'mute button sets volume slider to zero and remembers previous volum
         done_4();
     }, 2000); // wait this long before calling the function above    
 });
-// var player = $('.playa');
-// console.log(player);
