@@ -36,9 +36,8 @@ QUnit.test( 'seek slider initially to zero', function( assert ) {
 });
 
 // This one is not suitable for automated testing as the latency of the browser is so unpredictable.
-// Not entirely satisfactory. Have to run the test suite more than once to achieve sufficent response.
-// But we want to do a test that shows that the UI controls are working rather than wait on
-// DOM events directly 
+// Not entirely satisfactory since you have to run the test suite more than once to achieve sufficent response from the browser.
+// But we want to do a test that shows that the UI controls are working rather than wait on DOM events directly 
 QUnit.test( 
     'play sequence: mute button sets volume slider to zero and toggle remembers previous volume' , 
     function ( assert ) {
@@ -65,7 +64,7 @@ QUnit.test(
         var done_2 = assert.async();
         setTimeout(function() {
             play_button.trigger('click'); // stop play
-            assert.ok(seek_slider.val() > 0, 'volume slider remains approximately in poistion after pause');
+            assert.equal(seek_slider.val(), '0', 'volume slider remains approximately in poistion after pause');
             mute_button.trigger('click'); // mute
 
             var done_3 = assert.async();
@@ -77,16 +76,17 @@ QUnit.test(
                 setTimeout(function() {
                     // volume should have been restored
                     assert.equal( volume_slider.val(), test_level );
+
                     done_4();
+                    done_3();
+                    done_2();
+                    done_1();
 
                 }, delay); // wait this long before calling the function above   
-                done_3();
 
             }, delay); // wait for slider to adjust 
-            done_2();
             
         }, delay); // wait for the audio to play for a mo 
-        done_1();
 
     }, delay); // wait this long before pressing the play button 
 });
