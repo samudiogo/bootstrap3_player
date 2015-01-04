@@ -232,6 +232,7 @@
         var addMute = function () {
             var mute = document.createElement('button');
             $(mute).addClass('btn btn-default  col-xs-1');
+
             mute.checkVolume = function () {
                 if (song.volume > 0.5 && !song.muted) {
                     $(mute).html('<i class="glyphicon glyphicon-volume-up"></i>');
@@ -240,8 +241,9 @@
                 } else {
                     $(mute).html('<i class="glyphicon glyphicon-volume-off"></i>');
                 }
-            };
-            $(mute).click(function () {
+            }; // mute.checkVolume
+
+            $(mute).click( function () {
                 if (song.muted) {
                     song.muted = false;
                     song.volume = song.oldvolume;
@@ -251,7 +253,8 @@
                     song.volume = 0;
                 }
                 mute.checkVolume();
-            });
+            }); // mute.click(
+
             mute.checkVolume();
             $(song).on('volumechange', mute.checkVolume);
             $(player).append(mute);
@@ -270,7 +273,7 @@
             volume.slide = function () {
                 song.muted = false;
                 song.volume = $(volume).val();
-            };
+            }; // volume.slide
 
             volume.set = function () {
                 $(volume).val(song.volume);
@@ -282,6 +285,7 @@
             $(volume).on('change', volume.slide);
             $(song).on('volumechange', volume.set);
             $(player).append(vol_wrapper);
+            
         }; // addVolume
 
         var addAlbumArt = function () {
