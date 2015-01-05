@@ -11,6 +11,7 @@
 <body>
   <div id="qunit"></div>
   <div id="qunit-fixture">
+  </div><!-- /qunit-fixture (don't enclose audio when running FuncUnit) -->
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Audio with no additional data ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <audio controls>
       <!-- local audio files to avoid too much latency in QUnit test -->
@@ -19,12 +20,12 @@
       <a href="http://www.w3schools.com/html/horse.mp3">horse</a>
       An html5-capable browser is required to play this audio. 
     </audio>
-  </div>
     <!-- ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^  -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script> 
   <script src="../js/bootstrap3_player.js"></script>
   <script src="http://code.jquery.com/qunit/qunit-1.16.0.js"></script>
   <script src="tests.js"></script>
+  <script src="funcunit.js"></script>
 </body>
 </html>
