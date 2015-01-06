@@ -177,7 +177,7 @@
         }; // addSeek
 
         var addTime = function () {
-            var time = document.createElement('a');
+            var time = document.createElement('button');
             $(time).addClass('btn btn-default col-xs-3 text-muted');
             $(time).tooltip({'container': 'body', 'placement': 'right', 'html': true});
 
@@ -200,11 +200,13 @@
             }; // time.timesplit
 
             time.showtime = function () {
+                var position_title = 'Click to Reset<hr style="padding:0; margin:0;" />Position: ';
+                var length_title = 'Click to Reset<hr style="padding:0; margin:0;" />Length: ';
                 $(time).html(time.timesplit(song.duration));
-                $(time).attr({'title': 'Click to Reset<hr style="padding:0; margin:0;" />Position: ' + (time.timesplit(song.currentTime))});
+                $(time).attr({'title': position_title  + (time.timesplit(song.currentTime))});
                 if (!song.paused) {
                     $(time).html(time.timesplit(song.currentTime));
-                    $(time).attr({'title': 'Click to Reset<hr style="padding:0; margin:0;" />Length: ' + (time.timesplit(song.duration))});
+                    $(time).attr({'title': length_title + (time.timesplit(song.duration))});
                 }
                 $(time).tooltip('fixTitle');
             }; // time.showtime
