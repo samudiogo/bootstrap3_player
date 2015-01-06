@@ -3,12 +3,12 @@ bootstrap3_player
 
 An HTML5 Audio Player Skin For Twitter Bootstrap 3
 
-### Requires:
+#### Requires:
 
   * Twitter Bootstrap 3 - http://twitter.github.com/bootstrap/
   * jQuery - http://jquery.com/
 
-### Live demo and how to use
+#### Live demo and how to use
 
 Open the included [`index.html`](index.html) file: 
 -  with **your browser** to:  
@@ -18,16 +18,16 @@ Open the included [`index.html`](index.html) file:
     -  see all the css and js files you need to link to
     -  see the `<audio>`  tags in use
 
-### Forked from William Randol's [bootstrap-player](https://github.com/WilliamRandol/bootstrap-player)
+#### Forked from William Randol's [bootstrap-player](https://github.com/WilliamRandol/bootstrap-player)
 
  -  `bootstrap-player` is great for Bootstrap 2
  -  All the functionality of William Randol's player is preserved   
- (QUnit test suite in progress :waxing_crescent_moon:)
+ (QUnit / FuncUnit test suite in progress :waxing_crescent_moon:)
  -  `bootstrap3_player` updates the styling of `bootstrap-player`; has fewer dependencies; uses Bootstrap 3
 
 For some info on the differences between `bootstrap-player` and `bootstrap3_player`, [see here.](CHANGES.md)
 
-### <a name="screenshots">Screenshots
+#### <a name="screenshots">Screenshots
 
 -  Audio with no additional data ![](screenshots/bPlayer_demo_data_no.png?raw=true)
 
