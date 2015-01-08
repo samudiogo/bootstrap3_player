@@ -18,7 +18,10 @@
 
 #### Javascript differences
 
+-  Functionality of William Randol's [bootstrap-player](https://github.com/WilliamRandol/bootstrap-player) not changed 
 -  Changes only made to incorporate [CSS Differences](#cdiff)
+-  Program statements indented per jslint / jshint for future readers
+-  A very few comments added for the benefit of future readers 
 
 #### Live demo
 
