@@ -17,8 +17,8 @@ QUnit.module( "Functional test", {
     self.play_button    = $('.playa > section > button:first-child');
     self.mute_button    = $('.playa button.btn:nth-child(4)');
     self.volume_slider  = $('.playa div.btn:nth-child(5) > input:nth-child(1)');  
-    self.time_info_slctr  =   '.playa button.text-muted'; // not a very robust selector 
-    self.time_info      = $(self.time_info_slctr); 
+    self.time_info_slr  =   '.playa button.text-muted'; // not a very robust selector 
+    self.time_info      = $(self.time_info_slr); 
 
    // Add some id's to the UI controls for testing only
     self.mute_button.attr(  'id', 'mute_button');
@@ -50,10 +50,10 @@ QUnit.test( 'play sequence:', function( assert ) {
 
     F('#seek_slider').val('0', 'seek slider initially to zero');
 
-    F(self.time_info_slctr).exists(
+    F(self.time_info_slr).exists(
         function () {
-            var info =  F('.playa button.text-muted').data('originalTitle');
-            var text =  F('.playa button.text-muted').text();
+            var info =  F(self.time_info_slr).data('originalTitle');
+            var text =  F(self.time_info_slr).text();
             // tests run in ECMAScript 6 - compatible browsers e.g. Firefox 34
             assert.ok(true, 'the next assertion may fail with a script error in Safari and Chrome and older versions of Firefox');
             assert.ok(info.contains('Position:'), 'time button ToolTip initial shows position');
@@ -76,10 +76,10 @@ QUnit.test( 'play sequence:', function( assert ) {
 
     F('#play_button').click();
 
-    F(self.time_info_slctr).exists(
+    F(self.time_info_slr).exists(
         function () {
-            var info =  F('.playa button.text-muted').data('originalTitle');
-            var text =  F('.playa button.text-muted').text();
+            var info =  F(self.time_info_slr).data('originalTitle');
+            var text =  F(self.time_info_slr).text();
             console.log(info, text);
             // tests run in ECMAScript 6 - compatible browsers e.g. Firefox 34
             assert.ok(info.contains('Position:'), 'time button ToolTip  shows position during play when muted');
@@ -90,9 +90,9 @@ QUnit.test( 'play sequence:', function( assert ) {
 
     F('#volume_slider').val(preferred_volume, 'toggling mute restores previous volume');
 
-    F(self.time_info_slctr).wait(
+    F(self.time_info_slr).wait(
         function () {
-            var info =  F(self.time_info_slctr).data('originalTitle');
+            var info =  F(self.time_info_slr).data('originalTitle');
             console.log(info);
             // tests run in ECMAScript 6 - compatible browsers e.g. Firefox 34
             return  info.contains('Length:');
