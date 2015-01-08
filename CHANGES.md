@@ -14,6 +14,7 @@
         -   `.disabled`  => opaque property on `input[type="range"]`.  
         (`.disabled` disables the sliders as well as styling them opaquely)  
         -   `.icon-spin` => `glyphicon glyphicon-refresh spin`  
+        -   `collapsing` introduced
 -  `.spin` introduced to apply rotation keyframes to `glyphicon-refresh`
 
 #### Javascript differences

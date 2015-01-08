@@ -31,6 +31,10 @@ QUnit.module( "Functional test", {
     self.mute_volume_down   = '<i class="glyphicon glyphicon-volume-down"></i>';
     self.mute_volume_mute   = '<i class="glyphicon glyphicon-volume-off"></i>';
 
+    F('#seek_slider').exists( function () {
+        $('#seek_slider').val('0').trigger('change'); // start from the beginning at each  test
+    }).wait(2000);
+
   } // beforeEach
 }); // module
 
@@ -40,23 +44,29 @@ QUnit.test( 'audio controls have been replaced by player skin', function ( asser
 
     F('audio[controls]').missing('remaining audio element has no native controls');
 
-    F('.playa').exists('the player skin has been created' );
+    F('.playa').exists(
+        function () {
+            assert.ok(true, 'DOM checks complete');
+        }, 'the player skin has been created' );
 
 });
 
 QUnit.test( 'play sequence:', function( assert ) {
 
-    var preferred_volume = '0.2'; // during testing
+    var preferred_volume = '0.1'; // during testing
+    var seek_max;
 
-    F('#seek_slider').val('0', 'seek slider initially to zero');
+    F('#seek_slider').val('0', 'seek slider initially at zero');
 
     F(self.time_info_slr).exists(
         function () {
-            var info =  F(self.time_info_slr).data('originalTitle');
+            var tooltip =  F(self.time_info_slr).data('originalTitle');
             var text =  F(self.time_info_slr).text();
+            seek_max = Number($('#seek_slider').prop('max'));
             // tests run in ECMAScript 6 - compatible browsers e.g. Firefox 34
-            assert.ok(true, 'the next assertion may fail with a script error in Safari and Chrome and older versions of Firefox');
-            assert.ok(info.contains('Position:'), 'time button ToolTip initial shows position');
+            assert.ok(true, 'the next assertion may fail with a script error in Safari \
+                and Chrome and older versions of Firefox');
+            assert.ok(tooltip.contains('Position:'), 'time button ToolTip initial shows position');
             assert.ok(text !== '00:00', 'time button initial shows song length');
         });
 
@@ -74,29 +84,36 @@ QUnit.test( 'play sequence:', function( assert ) {
     // quiet: we're testing
     F('#mute_button').click().html(self.mute_volume_mute, 'clicking mute changes the mute icon to "muted"');
 
-    F('#play_button').click();
+    F('#play_button').click(); // toggle: start play
 
     F(self.time_info_slr).exists(
         function () {
-            var info =  F(self.time_info_slr).data('originalTitle');
-            var text =  F(self.time_info_slr).text();
-            console.log(info, text);
+            var tooltip =  F(self.time_info_slr).data('originalTitle');
+            var song_position =  F(self.time_info_slr).text();
             // tests run in ECMAScript 6 - compatible browsers e.g. Firefox 34
-            assert.ok(info.contains('Position:'), 'time button ToolTip  shows position during play when muted');
-            assert.ok(text === '00:00' , 'time button itself shows duration of play');
+            assert.ok(tooltip.contains('Position:'), 'time button ToolTip  shows position during play when muted');
+            assert.ok(song_position === '00:00' , 'time button itself shows duration of play');
         });
 
     F('#mute_button').click().html(self.mute_volume_down, 'clicking mute changes the mute icon to "volume is low"');
 
     F('#volume_slider').val(preferred_volume, 'toggling mute restores previous volume');
 
-    F(self.time_info_slr).wait(
+    F(self.time_info_slr).wait(3000).exists( /// give it time to start playing
         function () {
-            var info =  F(self.time_info_slr).data('originalTitle');
-            console.log(info);
+            var tooltip =  F(self.time_info_slr).data('originalTitle');
             // tests run in ECMAScript 6 - compatible browsers e.g. Firefox 34
-            return  info.contains('Length:');
+            return  tooltip.contains('Length:');
         }, 'time button ToolTip  shows current time (length) during play when not muted');
+    
+    F('#seek_slider').exists( 
+        function () {
+            $('#seek_slider').val(seek_max - 5).trigger('change'); 
+            assert.ok(true, 'skipping to the end of the track');
+        // }).wait(3000);
+        });
+
+    F('#seek_slider').val('0', 'seek slider finally at zero');
 
 });
 

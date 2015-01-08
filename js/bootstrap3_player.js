@@ -202,11 +202,12 @@
             time.showtime = function () {
                 var position_title = 'Click to Reset<hr style="padding:0; margin:0;" />Position: ';
                 var length_title = 'Click to Reset<hr style="padding:0; margin:0;" />Length: ';
-                $(time).html(time.timesplit(song.duration));
-                $(time).attr({'title': position_title  + (time.timesplit(song.currentTime))});
                 if (!song.paused) {
                     $(time).html(time.timesplit(song.currentTime));
                     $(time).attr({'title': length_title + (time.timesplit(song.duration))});
+                } else {
+                    $(time).html(time.timesplit(song.duration));
+                    $(time).attr({'title': position_title  + (time.timesplit(song.currentTime))});
                 }
                 $(time).tooltip('fixTitle');
             }; // time.showtime
