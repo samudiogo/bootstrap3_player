@@ -63,8 +63,6 @@ QUnit.test( 'play sequence:', function( assert ) {
             var tooltip =  F(self.time_info_slr).data('originalTitle');
             var text =  F(self.time_info_slr).text();
             seek_max = Number($('#seek_slider').prop('max'));
-            assert.ok(true, 'the next assertion may fail with a script error in Safari \
-                and Chrome and older versions of Firefox');
             assert.ok( tooltip.indexOf('Position:') > -1 , 'time button ToolTip initial shows position');
             assert.ok(text !== '00:00', 'time button initial shows song length');
         });
