@@ -63,10 +63,9 @@ QUnit.test( 'play sequence:', function( assert ) {
             var tooltip =  F(self.time_info_slr).data('originalTitle');
             var text =  F(self.time_info_slr).text();
             seek_max = Number($('#seek_slider').prop('max'));
-            // tests run in ECMAScript 6 - compatible browsers e.g. Firefox 34
             assert.ok(true, 'the next assertion may fail with a script error in Safari \
                 and Chrome and older versions of Firefox');
-            assert.ok(tooltip.contains('Position:'), 'time button ToolTip initial shows position');
+            assert.ok( tooltip.indexOf('Position:') > -1 , 'time button ToolTip initial shows position');
             assert.ok(text !== '00:00', 'time button initial shows song length');
         });
 
@@ -90,9 +89,8 @@ QUnit.test( 'play sequence:', function( assert ) {
         function () {
             var tooltip =  F(self.time_info_slr).data('originalTitle');
             var song_position =  F(self.time_info_slr).text();
-            // tests run in ECMAScript 6 - compatible browsers e.g. Firefox 34
-            assert.ok(tooltip.contains('Position:'), 'time button ToolTip  shows position during play when muted');
-            assert.ok(song_position === '00:00' , 'time button itself shows duration of play');
+            assert.ok( tooltip.indexOf('Position:') > -1, 'time button ToolTip  shows position during play when muted');
+            assert.ok( song_position === '00:00' , 'time button itself shows duration of play');
         });
 
     F('#mute_button').click().html(self.mute_volume_down, 'clicking mute changes the mute icon to "volume is low"');
@@ -102,8 +100,7 @@ QUnit.test( 'play sequence:', function( assert ) {
     F(self.time_info_slr).wait(3000).exists( /// give it time to start playing
         function () {
             var tooltip =  F(self.time_info_slr).data('originalTitle');
-            // tests run in ECMAScript 6 - compatible browsers e.g. Firefox 34
-            return  tooltip.contains('Length:');
+            return  tooltip.indexOf('Length:') > -1;
         }, 'time button ToolTip  shows current time (length) during play when not muted');
     
     F('#seek_slider').exists( 
