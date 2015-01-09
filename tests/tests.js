@@ -14,7 +14,8 @@ QUnit.module( "Functional test", {
     // It was decided not to have id's on the production markup
     // So we add jQuery collections and html id's here for clarity in testing only
     self.seek_slider    = $('.playa > section > div > input');
-    self.play_button    = $('.playa > section > button:first-child');
+    self.play_button_slr=   '.playa > section > button:first-child';
+    self.play_button    = $(self.play_button_slr);
     self.mute_button    = $('.playa button.btn:nth-child(4)');
     self.volume_slider  = $('.playa div.btn:nth-child(5) > input:nth-child(1)');  
     self.time_info_slr  =   '.playa button.text-muted'; // not a very robust selector 
@@ -31,9 +32,16 @@ QUnit.module( "Functional test", {
     self.mute_volume_down   = '<i class="glyphicon glyphicon-volume-down"></i>';
     self.mute_volume_mute   = '<i class="glyphicon glyphicon-volume-off"></i>';
 
+    self.play_play  = '<i class="glyphicon glyphicon-play"></i>';
+    self.play_pause = '<i class="glyphicon glyphicon-pause"></i>';
+
     F('#seek_slider').exists( function () {
         $('#seek_slider').val('0').trigger('change'); // start from the beginning at each  test
-    }).wait(2000);
+        }
+    );
+
+    F('#seek_slider').val('0', 'the seek slider is initially at zero');
+    F('#play_button').html(self.play_play, 'the play button icon shows "play"');
 
   } // beforeEach
 }); // module
@@ -54,61 +62,58 @@ QUnit.test( 'audio controls have been replaced by player skin', function ( asser
 QUnit.test( 'play sequence:', function( assert ) {
 
     var preferred_volume = '0.1'; // during testing
-    var seek_max;
+    var seek_max; // remember "end of play"
 
-    F('#seek_slider').val('0', 'seek slider initially at zero');
+    // Before play ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     F(self.time_info_slr).exists(
         function () {
             var tooltip =  F(self.time_info_slr).data('originalTitle');
             var text =  F(self.time_info_slr).text();
             seek_max = Number($('#seek_slider').prop('max'));
-            assert.ok( tooltip.indexOf('Position:') > -1 , 'time button ToolTip initial shows position');
-            assert.ok(text !== '00:00', 'time button initial shows song length');
+            assert.ok( tooltip.indexOf('Position:') > -1 , 'time button ToolTip initially shows "Position"');
+            assert.ok( text !== '00:00', 'time button ToolTip initially shows "Position: 00:00"');
         });
 
     F('#mute_button').click().html(self.mute_volume_mute, 'clicking mute sets the mute icon to mute');
 
-    // FuncUnit drag doesn't seem to work on this `input type="range"` slider
+    // quiet: we're testing
+    // FuncUnit drag doesn't work on this `input type="range"` slider
     F('#volume_slider').exists( function () {
         self.volume_slider.val(preferred_volume).trigger('change');
         });
 
     F('#volume_slider').val(preferred_volume, 'wait for volume slider to go low');
 
-    F('#mute_button').html(self.mute_volume_down, 'lowering the volume slider changes the mute icon');
+    F('#mute_button').html(self.mute_volume_down, 'lowering the volume slider changes the mute icon to "volume is low"');
 
-    // quiet: we're testing
-    F('#mute_button').click().html(self.mute_volume_mute, 'clicking mute changes the mute icon to "muted"');
+    // During play ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    F('#play_button').click(); // toggle: start play
-
-    F(self.time_info_slr).exists(
+    F('#play_button').click().wait(2000).wait(
         function () {
-            var tooltip =  F(self.time_info_slr).data('originalTitle');
-            var song_position =  F(self.time_info_slr).text();
-            assert.ok( tooltip.indexOf('Position:') > -1, 'time button ToolTip  shows position during play when muted');
-            assert.ok( song_position === '00:00' , 'time button itself shows duration of play');
-        });
+            var text =  $(self.time_info_slr).text();
+            return text !== '00:00';
+        }, 'time button ToolTip no longer shows "Position: 00:00"'
+    );
 
-    F('#mute_button').click().html(self.mute_volume_down, 'clicking mute changes the mute icon to "volume is low"');
+    // In a browser you can see the "play" icons changing correctly.But I haven't found a way 
+    // to emulate this with FuncUnit / QUnit
+    // The player changes its play icons in response to audio events 
+    // You'd imagine we'd be able to emulate the physical interaction ... bt no joy
 
-    F('#volume_slider').val(preferred_volume, 'toggling mute restores previous volume');
+    F('#mute_button').click().html(self.mute_volume_mute, 'initially clicking mute changes the mute icon to "muted"');
 
-    F(self.time_info_slr).wait(3000).exists( /// give it time to start playing
-        function () {
-            var tooltip =  F(self.time_info_slr).data('originalTitle');
-            return  tooltip.indexOf('Length:') > -1;
-        }, 'time button ToolTip  shows current time (length) during play when not muted');
+    F('#mute_button').click().html(self.mute_volume_down, 'toggling off mute changes the mute icon to "volume is low"');
+
+    F('#volume_slider').val(preferred_volume, '... and restores previous volume');
     
-    F('#seek_slider').exists( 
+    F('#seek_slider').exists( // play for a few seconds before skipping to end 
         function () {
             $('#seek_slider').val(seek_max - 5).trigger('change'); 
             assert.ok(true, 'skipping to the end of the track');
-        // }).wait(3000);
         });
 
-    F('#seek_slider').val('0', 'seek slider finally at zero');
+    F('#seek_slider').val('0', 'seek slider finally at zero'); // wait for the seek slider to take effect
 
 });
 
