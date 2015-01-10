@@ -27,7 +27,10 @@ Open the included [`index.html`](index.html) file:
 
 For some info on the differences between `bootstrap-player` and `bootstrap3_player`, [see here.](CHANGES.md)
 
-#### <a name="screenshots">Screenshots
+
+#### <a name="screenshots">Screenshots and Live demo
+
+[See a live demo](http://playerdemo.iainhouston.com)
 
 -  Audio with no additional data ![](screenshots/bPlayer_demo_data_no.png?raw=true)
 
