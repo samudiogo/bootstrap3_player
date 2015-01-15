@@ -18,7 +18,7 @@ QUnit.module( "Functional test", {
     self.play_button    = $(self.play_button_slr);
     self.mute_button    = $('.playa button.btn:nth-child(4)');
     self.volume_slider  = $('.playa div.btn:nth-child(5) > input:nth-child(1)');  
-    self.time_info_slr  =   '.playa button.text-muted'; // not a very robust selector 
+    self.time_info_slr  =   '.playa button.btn:nth-child(3)'; 
     self.time_info      = $(self.time_info_slr); 
 
    // Add some id's to the UI controls for testing only

@@ -9,14 +9,14 @@
         $(player_box).addClass($(song).attr('class') + ' well container-fluid playa');
 
         var data_sec = document.createElement('section');
-        $(data_sec).addClass('collapsing row col-xs-12');
+        $(data_sec).addClass('collapsing row col-sm-12');
 
         var toggle_holder = document.createElement('div');
-        $(toggle_holder).addClass('btn-group row col-xs-12');
+        $(toggle_holder).addClass('btn-group row col-sm-12');
 
         var data_toggle = document.createElement('button');
         $(data_toggle).html('<i class="glyphicon glyphicon-align-justify" style="top:-3px"></i>');
-        $(data_toggle).addClass('btn btn-default btn-lg btn-block row col-xs-12');
+        $(data_toggle).addClass('btn btn-default btn-lg btn-block row col-sm-12');
         $(data_toggle).attr('style', 'opacity:0.3');
         $(data_toggle).click(function () {$(data_sec).collapse('toggle'); });
         $(data_toggle).attr('title', 'Details');
@@ -27,7 +27,7 @@
         $(data_table).addClass('table table-condensed');
 
         var player = document.createElement('section');
-        $(player).addClass('btn-group row  col-xs-12');
+        $(player).addClass('btn-group row  col-sm-12');
 
         var load_error = function () {
             // console.log('error');
@@ -41,7 +41,7 @@
 
         var addPlay = function () {
             var play = document.createElement('button');
-            $(play).addClass('btn  btn-default disabled col-xs-1');
+            $(play).addClass('btn  btn-default disabled col-sm-1');
 
             play.setPlayState = function (toggle) {
                 $(play).removeClass('disabled');
@@ -155,7 +155,7 @@
             };
 
             var seek_wrapper = document.createElement('div');
-            $(seek_wrapper).addClass('btn btn-default col-xs-4');
+            $(seek_wrapper).addClass('btn btn-default col-sm-4 hidden-xs');
             $(seek_wrapper).append(seek);
 
             // bind seek / position slider events
@@ -178,7 +178,7 @@
 
         var addTime = function () {
             var time = document.createElement('button');
-            $(time).addClass('btn btn-default col-xs-3 text-muted');
+            $(time).addClass('btn btn-default col-sm-3');
             $(time).tooltip({'container': 'body', 'placement': 'right', 'html': true});
 
             time.twodigit = function (myNum) {
@@ -237,7 +237,7 @@
 
         var addMute = function () {
             var mute = document.createElement('button');
-            $(mute).addClass('btn btn-default  col-xs-1');
+            $(mute).addClass('btn btn-default  col-sm-1');
 
             mute.checkVolume = function () {
                 if (song.volume > 0.5 && !song.muted) {
@@ -286,7 +286,7 @@
             };
 
             var vol_wrapper = document.createElement('div');
-            $(vol_wrapper).addClass('btn  btn-default  row col-xs-3');
+            $(vol_wrapper).addClass('btn  btn-default  row col-sm-3 hidden-xs');
             $(vol_wrapper).append(volume);
             $(volume).on('change', volume.slide);
             $(song).on('volumechange', volume.set);
@@ -362,10 +362,10 @@
 
         var addAttribution = function () {
             var attribution = document.createElement('div');
-            $(attribution).addClass('row col-xs-8 col-xs-offset-3');
+            $(attribution).addClass('row col-sm-12');
             if (typeof ($(song).data('infoAttLink')) !== 'undefined') {
                 var attribution_link = document.createElement('a');
-                $(attribution_link).addClass('text-muted btn btn-link btn-xs');
+                $(attribution_link).addClass('text-muted btn btn-link btn-sm');
                 $(attribution_link).attr('href', $(song).data('infoAttLink'));
                 $(attribution_link).html($(song).data('infoAtt'));
                 $(attribution).append(attribution_link);
