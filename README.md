@@ -18,6 +18,10 @@ Clone or download this repo; then open the included [`index.html`](index.html) f
     -  see all the css and js files you need to link to
     -  see the `<audio>`  tags in use
 
+#### Styling caveat
+
+Works best when the player is not enclosed in too narrow a container in which case controls can appear jumbled. The seek and volume sliders are hidden on narrow (xs) viewports and stack in very narrow situations. However, this is not an entirely satisfactory solution. Please raise an issue if this compromise doesn't suit your use case. 
+
 #### Forked from William Randol's [bootstrap-player](https://github.com/WilliamRandol/bootstrap-player)
 
  -  `bootstrap-player` is great for Bootstrap 2

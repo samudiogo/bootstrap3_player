@@ -9,13 +9,13 @@
 
 - Reduced custom css: greater reliance on Bootstrap 3 component styling; particularly buttons and button groups. 
 - Bootstrap 3 classes replace many Bootstrap 2 classes. Notably:  
-        -   `span*` => `col-xs-*`   
-        xs elements stay horizontal when player button rows narrow whereas the other device width classes stack  
+        -   `span*` => `col-sm-*`    
         -   `.disabled`  => opaque property on `input[type="range"]`.  
         (`.disabled` disables the sliders as well as styling them opaquely)  
         -   `.icon-spin` => `glyphicon glyphicon-refresh spin`  
         -   `collapsing` introduced
--  `.spin` introduced to apply rotation keyframes to `glyphicon-refresh`
+-  `.spin` class introduced to apply rotation keyframes to `glyphicon-refresh`
+-  seek and volume slider controls hidden on xs viewports. This is not entirely satisfactory as the controls are jumbled when the player's container is styled narrow on the web page rather than just being viewed on a narrow device.
 
 #### Javascript differences
 

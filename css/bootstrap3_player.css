@@ -12,23 +12,18 @@
     width:100%;
 }
 
-.playa .col-xs-12 {
-    padding-right: 0;
-}
-
+/* sliders and buttons need a uniform height */
 .playa .btn-group .btn {
     display:inline-block;
     float:none;
     height: 2.2em;
 }
 
-/* TODO: Now (Bootstrap 3)  playa can be the descendent of all xs sm md lg combinations*/
-/* 
-.col-xs-4.playa, .col-xs-3 .playa, .col-xs-2 .playa, .col-xs-1 .playa, .playa.col-xs-4, .playa.col-xs-3, .playa.col-xs-2, .playa.col-xs-1{
-    padding:0;
-    overflow:hidden;
+/*  contains the attribution link */
+.playa .row:nth-child(4) { 
+  overflow: hidden;
 }
- */
+
 /* Acknowledgements:
 To Glyphicons (http://glyphicons.com/) for the Halflings glyphs font */
 

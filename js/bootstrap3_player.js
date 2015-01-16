@@ -362,7 +362,7 @@
 
         var addAttribution = function () {
             var attribution = document.createElement('div');
-            $(attribution).addClass('row col-sm-12');
+            $(attribution).addClass('row col-sm-10 col-sm-offset-1');
             if (typeof ($(song).data('infoAttLink')) !== 'undefined') {
                 var attribution_link = document.createElement('a');
                 $(attribution_link).addClass('text-muted btn btn-link btn-sm');
