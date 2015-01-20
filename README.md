@@ -20,8 +20,7 @@ Clone or download this repo; then open the included [`index.html`](index.html) f
 
 #### Styling caveat
 
-Works best when the player is not enclosed in too narrow a container in your page otherwise the player controls can appear jumbled. The seek slider is hidden on narrow (xs) viewports and controls can stack in very narrow situations. In an xs viewport I suggest you use all twelve grid colums of the page's outer container. The player can occupy fewer of the page's grid columns in wider viewports. See the example row widths in  [`index.html`](index.html).   
-This is not an entirely satisfactory solution. Please raise an issue if this compromise doesn't suit your use case. 
+Works best when the player is not enclosed in too narrow a container in your page otherwise the player controls can appear jumbled. Both the seek and volume sliders are hidden on narrow (xs) viewports. A good strategy is to start "mobile-first" as usual by enclosing your audio block in a row that uses all twelve grid colums of the page's outer container in an xs viewport. Then, on wider viewports, the player can occupy fewer of the page's grid columns. See the example row widths in  [`index.html`](index.html) and the corresponding [live demo](http://playerdemo.iainhouston.com).   
 
 ##### Forked from William Randol's [bootstrap-player](https://github.com/WilliamRandol/bootstrap-player)
 

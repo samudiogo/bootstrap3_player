@@ -286,7 +286,7 @@
             };
 
             var vol_wrapper = document.createElement('div');
-            $(vol_wrapper).addClass('btn  btn-default  row col-sm-3');
+            $(vol_wrapper).addClass('btn  btn-default  row col-sm-3  hidden-xs');
             $(vol_wrapper).append(volume);
             $(volume).on('change', volume.slide);
             $(song).on('volumechange', volume.set);
