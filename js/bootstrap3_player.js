@@ -9,10 +9,10 @@
         $(player_box).addClass($(song).attr('class') + ' well container-fluid playa');
 
         var data_sec = document.createElement('section');
-        $(data_sec).addClass('collapsing row col-sm-12');
+        $(data_sec).addClass('collapsing center-block row col-sm-12');
 
         var toggle_holder = document.createElement('div');
-        $(toggle_holder).addClass('btn-group row col-sm-12');
+        $(toggle_holder).addClass('btn-group center-block row col-sm-12');
 
         var data_toggle = document.createElement('button');
         $(data_toggle).html('<i class="glyphicon glyphicon-align-justify" style="top:-3px"></i>');
@@ -27,7 +27,7 @@
         $(data_table).addClass('table table-condensed');
 
         var player = document.createElement('section');
-        $(player).addClass('btn-group row  col-sm-12');
+        $(player).addClass('btn-group  center-block row  col-sm-12');
 
         var load_error = function () {
             // console.log('error');
@@ -286,7 +286,7 @@
             };
 
             var vol_wrapper = document.createElement('div');
-            $(vol_wrapper).addClass('btn  btn-default  row col-sm-3 hidden-xs');
+            $(vol_wrapper).addClass('btn  btn-default  row col-sm-3');
             $(vol_wrapper).append(volume);
             $(volume).on('change', volume.slide);
             $(song).on('volumechange', volume.set);

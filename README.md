@@ -20,9 +20,10 @@ Clone or download this repo; then open the included [`index.html`](index.html) f
 
 #### Styling caveat
 
-Works best when the player is not enclosed in too narrow a container in which case controls can appear jumbled. The seek and volume sliders are hidden on narrow (xs) viewports and stack in very narrow situations. However, this is not an entirely satisfactory solution. Please raise an issue if this compromise doesn't suit your use case. 
+Works best when the player is not enclosed in too narrow a container in your page otherwise the player controls can appear jumbled. The seek slider is hidden on narrow (xs) viewports and controls can stack in very narrow situations. In an xs viewport I suggest you use all twelve grid colums of the page's outer container. The player can occupy fewer of the page's grid columns in wider viewports. See the example row widths in  [`index.html`](index.html).   
+This is not an entirely satisfactory solution. Please raise an issue if this compromise doesn't suit your use case. 
 
-#### Forked from William Randol's [bootstrap-player](https://github.com/WilliamRandol/bootstrap-player)
+##### Forked from William Randol's [bootstrap-player](https://github.com/WilliamRandol/bootstrap-player)
 
  -  `bootstrap-player` is great for Bootstrap 2
  -  All the functionality of William Randol's player is preserved   
