@@ -72,13 +72,15 @@
                     clearInterval(loadCheck);
                     return true;
                 }
-                if (song.networkState === 3 || timeout === 75) {
+                if (song.networkState === 3 || timeout === 100) {
+                    // 3 = NETWORK_NO_SOURCE - no audio/video source found
+                    console.log('No audio source was found or a timeout occurred');
                     load_error();
                     clearInterval(loadCheck);
                     return false;
                 }
                 timeout++;
-            }, 50);
+            }, 100); // x milliseconds per attempt
             $(player).append(play);
         }; // addPlay
 
@@ -385,6 +387,7 @@
 
         fillPlayerBox();
         $(song).on('error', function () {
+            console.log("Error encountered after fillPlayerBox");
             load_error();
         });
         return player_box;
