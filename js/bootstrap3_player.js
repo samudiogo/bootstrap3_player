@@ -51,7 +51,7 @@
                         song.play();
                     });
                 }
-                if (toggle === 'pause') {
+                if (!song.paused || toggle === 'pause') {
                     $(play).html('<i class="glyphicon glyphicon-pause"></i>');
                     $(play).click(function () {
                         song.pause();
