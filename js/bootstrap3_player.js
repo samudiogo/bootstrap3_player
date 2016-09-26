@@ -51,7 +51,7 @@
                         song.play();
                     });
                 }
-                if (toggle === 'pause') {
+                if (!song.paused || toggle === 'pause') {
                     $(play).html('<i class="glyphicon glyphicon-pause"></i>');
                     $(play).click(function () {
                         song.pause();
@@ -67,6 +67,11 @@
             var timeout = 0;
 
             var loadCheck = setInterval(function () {
+                if (!song.paused){
+                    play.setPlayState('pause');
+                    clearInterval(loadCheck);
+                    return true;
+                }
                 if (isNaN(song.duration) === false) {
                     play.setPlayState('play');
                     clearInterval(loadCheck);
