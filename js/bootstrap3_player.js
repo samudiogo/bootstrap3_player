@@ -15,6 +15,7 @@
         $(toggle_holder).addClass('btn-group center-block row col-sm-12');
 
         var data_toggle = document.createElement('button');
+        $(data_toggle).attr('type','button');
         $(data_toggle).html('<i class="glyphicon glyphicon-align-justify" style="top:-3px"></i>');
         $(data_toggle).addClass('btn btn-default btn-lg btn-block row col-sm-12');
         $(data_toggle).attr('style', 'opacity:0.3');
@@ -41,6 +42,7 @@
 
         var addPlay = function () {
             var play = document.createElement('button');
+            $(play).attr('type','button');
             $(play).addClass('btn  btn-default disabled col-sm-1');
 
             play.setPlayState = function (toggle) {
@@ -185,6 +187,7 @@
 
         var addTime = function () {
             var time = document.createElement('button');
+            $(time).attr('type','button');
             $(time).addClass('btn btn-default col-sm-3');
             $(time).tooltip({'container': 'body', 'placement': 'right', 'html': true});
 
@@ -244,6 +247,7 @@
 
         var addMute = function () {
             var mute = document.createElement('button');
+            $(mute).attr('type','button');
             $(mute).addClass('btn btn-default  col-sm-1');
 
             mute.checkVolume = function () {
